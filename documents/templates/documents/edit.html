@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'documents/custom.css' %}">
+
+  <title>MkEdit</title>
+</head>
+<body>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  <form id="edit-document" action="." method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="button" type="submit" value="Save changes">
+    <a target="blank" class="button" id="render-btn" href="{% url 'documents:render_document' doc.ref %}">Render</a>
+    <span class="share">(You can share the button link with friends)</span>
+  </form>
+
+  <script src="{% static 'documents/custom.js' %}"></script>
+</body>
+</html>

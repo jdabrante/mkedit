@@ -1,0 +1,15 @@
+<table>
+    <tr>
+      <th>Created</th>
+      <td>{{ doc.created|date:'M. d, o, P'}}</td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td>{{ doc.updated|date:'M. d, o, P'}}</td>
+    </tr>
+  </table>
+  
+  <hr>
+  
+  <h1>{{ doc.title }}</h1>
+  {{ render_contents|safe }}
